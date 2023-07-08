@@ -1,0 +1,18 @@
+## Functions ##
+
+# get_valid_urls()
+- No params
+- Return validate urls
+- Return variable type: List
+
+# path_to_valid_urls()
+- No params
+- Sure! Here's the translation:
+- Convert page internal redirects such as "../posts/02492948" and "/homepage/" and "index.php" to validate URLs.
+The result would be "https://www.example.com/contact/../posts/023492948" and "https://www.example.com/hompage" and "https://www.example.com/index.php".
+- Return variable type: List
+
+# all_urls()
+- No params
+- Return validate urls and path_to_valid urls
+- Return variable type: List

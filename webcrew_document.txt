@@ -1,0 +1,46 @@
+### Functions ###
+
+# get_title()
+- No params
+- Return page title
+- Return variable type: String
+
+# get_desc()
+- No params
+- Return page description
+- Return variable type: String
+
+# get_keywords()
+- No params
+- Returns keywords if any. If not, it returns empty.
+- Return variable type: String
+
+# get_charset()
+- No params
+- Returns the character set, if any. If not, "all" is returned.
+- Return variable type: String
+
+# get_robots()
+- No params
+- Returns the page's robots meta tag, if any. If not, it returns empty.
+- Return variable type: String
+
+# get_lang()
+- No params
+- Returns the language of the page, if any. If not, it returns empty.
+- Return variable type: String
+
+# get_mobile()
+- No params
+- Returns 1 if mobile-friendly, 0 if not mobile-friendly.
+- Return variable type: Integer
+
+# get_icon()
+- No params
+- If the page has an icon, the icon path returns. If there is no page icon, "default-icon.png" is returned.
+- Return variable type: String
+
+# get_all()
+- No params
+- Returns all data in variable type "dictionary".
+- Return variable type: Dictionary
