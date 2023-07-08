@@ -4,8 +4,7 @@
 The installation of this Python library is quite easy. Unfortunately, there is currently no "pip" package available. Therefore, you need to download the library files directly. Don't worry, it only consists of one file. You can download this file (webcrew.py) and include it in your project to use it. The same applies to URL Scraper (urlscraper.py).
 
 ## Usage
-It is very easy to use.
-Here's an example of usage:
+It is very easy to use. Here's an example of usage:
 ```python
 from webcrew import WebCrew
 # İmport Module
@@ -25,6 +24,7 @@ For more you can check `webcrew_document.txt`
 # URL SCRAPER
 
 ## Usage
+Example:
 ```python
 from urlscraper import UrlScraper
 # import Module
