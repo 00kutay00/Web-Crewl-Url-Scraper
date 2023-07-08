@@ -9,7 +9,7 @@ It is very easy to use. Here's an example of usage:
 from webcrew import WebCrew
 # İmport Module
 
-crew = WebCrew("<URL")
+crew = WebCrew("<URL>")
 # Enter Url
 
 print(crew.get_all())
