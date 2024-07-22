@@ -12,8 +12,6 @@ bot = Crawler(<URL>)
 # Enter Url
 
 print( bot.all() )
-
-print(crew.get_all())
 # Print Crew Data
 ```
 For more you can check `v2.0.0/documentation/webcrawler.txt`
