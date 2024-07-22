@@ -45,7 +45,10 @@ For more you can check `scraper_document.txt`
 * urllib
 
 ## Version
-1.0.0
+2.0.0
 
 ## Updates
-No version update (latest version 1.0.0)
+### 2.0.0 Updates
+* Web Crawler and URL scraper have been merged into a single file.
+* Data extraction ability has been improved and it returns less None data type.
+* The code structure has been transformed into "clean code"
