@@ -11,7 +11,7 @@ from collections import Counter
 import langid # for language
 import pycountry # for eng to english
 
-class HorizonWebCrawler:
+class Crawler:
 
     def __init__(self, url):
         headers = {
