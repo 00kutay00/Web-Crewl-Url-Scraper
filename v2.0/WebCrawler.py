@@ -11,16 +11,11 @@ from collections import Counter
 import langid # for language
 import pycountry # for eng to english
 
-class Crawler:
+class Crewler:
 
-    def __init__(self, url):
-        headers = {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36'
-        }
-        response = req.get(url, headers=headers)
-
-        self.url = url
-        self.soup = BeSo(response.content, 'html.parser')
+    def __init__(self):
+        self.url = False
+        self.soup = False
     
     def iso639_to_string(self, code):
         try:
@@ -34,6 +29,19 @@ class Crawler:
 
     def base_url(self):
         return self.url
+    
+    def get(self, url):
+        try:
+            headers = {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36'
+            }
+            response = req.get(url, headers=headers)
+        except Exception as err:
+            return None
+
+        self.url = url
+        self.soup = BeSo(response.content, 'html.parser')
+        return self
 
     def title(self):
         title = self.soup.find("title")
@@ -50,6 +58,8 @@ class Crawler:
                     return site_name.get("content")
                 if site_name is None:
                     return title.get("content")
+            if title is not None or site_name is not None:
+                return title.get("content") + " | " + site_name.get("content")
             return title.get("content")
         return title.text
     
@@ -60,7 +70,7 @@ class Crawler:
             if description is None or description.get("content") is None:
                 p_tags = self.soup.find_all("p")
                 if len(p_tags) == 0:
-                    return None
+                    return "No Description"
                 p_tags = self.soup.find_all("p")
                 return p_tags[0].text
             return description.get("content")
@@ -69,9 +79,7 @@ class Crawler:
     def keywords(self):
         keywords = self.soup.find("meta", attrs={"name":"keywords"})
         if keywords is None or keywords.get("content") is None:
-            language = self.language()
-            normal_language = self.iso639_to_string(language)
-            stop_words = set(stopwords.words(normal_language))
+            stop_words = set(stopwords.words("english"))
 
             words = word_tokenize(self.text().lower())
             filtered_words = [word for word in words if word.isalnum() and word not in stop_words]
@@ -100,8 +108,8 @@ class Crawler:
         charset = self.soup.find("meta", attrs={"charset": True})
         if charset is None:
             return "all"
-        return charset.get("charset")
-
+        return str(charset.get("charset"))
+    
     def mobile(self):
         mobile = self.soup.find("meta", attrs={"name":"viewport"})
         if mobile is None:
@@ -123,7 +131,7 @@ class Crawler:
             if parsed_url.netloc != "":
                 urls.append(href)
                 continue
-            if parsed_url.path != "":
+            if parsed_url.scheme == "" and parsed_url.path != "":
                 urls.append( urljoin(self.url, href) )
                 continue
             continue
@@ -140,5 +148,3 @@ class Crawler:
             "charset"     : self.charset(),
             "mobile"      : self.mobile()
         }
-
-
